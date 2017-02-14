@@ -12,4 +12,7 @@ login to Google Cloud Platform via browser
 `gcloud auth login`
 
 call make command with project_id for gcloud project
-`make PROJECT_ID=<project_id> gcloud-login`
+`make setup PROJECT_ID=<project_id>`
+
+log into Google Cloud Platform bosh bastion vm
+`make login`
