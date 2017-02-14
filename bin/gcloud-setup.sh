@@ -1,4 +1,4 @@
-#!/usr/env/bin bash
+#!/bin/bash
 
 set -e
 
@@ -13,7 +13,6 @@ gcloud config set compute/zone ${zone}
 gcloud config set compute/region ${region}
 
 echo 'Creating a service account and key...'
-gcloud iam service-accounts create terraform-bosh
 gcloud iam service-accounts keys create /tmp/terraform-bosh.key.json \
     --iam-account terraform-bosh@${projectid}.iam.gserviceaccount.com
 
@@ -27,7 +26,4 @@ export GOOGLE_CREDENTIALS=$(cat /tmp/terraform-bosh.key.json)
 
 echo 'Printing infrastructure with Terraform...'
 terraform plan -var projectid=${projectid} -var region=${region} -var zone-1=${zone} -var zone-2=${zone2}
-
-echo 'Creating infrastructure with Terraform...'
-terraform apply -var projectid=${projectid} -var region=${region} -var zone-1=${zone} -var zone-2=${zone2}
 
